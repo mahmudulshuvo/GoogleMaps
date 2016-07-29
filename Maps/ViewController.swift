@@ -36,16 +36,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let camera = GMSCameraPosition.cameraWithLatitude(23.812615,
                                                           longitude: 90.413820,
                                                           zoom: 15)
+        
         mapView = GMSMapView.mapWithFrame(CGRectMake(0, 0, 400, 400), camera: camera)
         mapView.myLocationEnabled = true
         mapView.delegate = self
         bckView.addSubview(mapView)
+        
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(23.812615, 90.413820)
         marker.title = "Dhaka"
         marker.snippet = "Bangladesh"
         marker.map = mapView
+       // mapView.animateToViewingAngle(80)
     }
     
     
@@ -114,6 +117,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func getDirection(url : String) {
         
        // print(url)
+      //  clearRoute()
         itemArray = [String]()
         let directionsURLString = url.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         let directionsURL = NSURL(string: directionsURLString!)
@@ -123,8 +127,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 if let status = json["status"] as? String {
                     if (status == "OK") {
                         if let routes = json["routes"] as AnyObject? as? [[String: AnyObject]] {
+                        //    var counter:Int = 0
                             for r in routes {
-                                self.overviewPolyline = r["overview_polyline"] as? [String: AnyObject]
+                              //  if (counter == 0) {
+                                    self.overviewPolyline = r["overview_polyline"] as? [String: AnyObject]
+                             //       counter += 1
+                           ///     }
                                 if let legs = r["legs"] as? [[String: AnyObject]] {
                                     let startLocationDictionary = legs[0]["start_location"] as? [String: AnyObject]
                                     self.originCoordinate = CLLocationCoordinate2DMake(startLocationDictionary!["lat"] as! Double, startLocationDictionary!["lng"] as! Double)
@@ -132,11 +140,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                     self.destinationCoordinate = CLLocationCoordinate2DMake(endLocationDictionary!["lat"] as! Double, endLocationDictionary!["lng"] as! Double)
                                     for l in legs {
                                         if let steps = l["steps"] as? [[String: AnyObject]] {
-                                            for step in steps {
-                                                let distance = step["distance"] as? [String: AnyObject]
-                                                let str = (step["html_instructions"] as! String).stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
-                                                let finalString = str+""+" "+""+(distance!["text"] as! String)
-                                                itemArray.append(finalString)
+                                    //        if (counter == 1) {
+                                                for step in steps {
+                                                    let distance = step["distance"] as? [String: AnyObject]
+                                                    let str = (step["html_instructions"] as! String).stringByReplacingOccurrencesOfString("<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+                                                    let finalString = str+""+" "+""+(distance!["text"] as! String)
+                                                    itemArray.append(finalString)
+                                   //             }
+                                        //       counter += 1
                                             }
                                         }
                                     }
@@ -150,21 +161,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         catch _ {
             print("error")
         }
+        
         configureMapAndMarkersForRoute()
         drawRoute()
         updateTable()
     }
     
-    
-    
     func clearRoute() {
-        mapView = GMSMapView()
-        originMarker = nil
-        destinationMarker = nil
-        routePolyline = nil
+     //   mapView = GMSMapView()
+        self.originMarker = nil
+        self.destinationMarker = nil
+        self.routePolyline = nil
     }
     
     func drawRoute()  {
+        
         let route = self.overviewPolyline["points"] as! String
         let path: GMSPath = GMSPath(fromEncodedPath: route)!
         self.routePolyline = GMSPolyline(path: path)
@@ -175,6 +186,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func configureMapAndMarkersForRoute() {
+        clearRoute()
         mapView.camera = GMSCameraPosition.cameraWithTarget(originCoordinate, zoom: 15.0)
         
         originMarker = GMSMarker(position: self.originCoordinate)
@@ -186,9 +198,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         destinationMarker.map = self.mapView
         destinationMarker.icon = GMSMarker.markerImageWithColor(UIColor.redColor())
         destinationMarker.title = self.destinationAddress
+     //   mapView.animateToViewingAngle(80)
         
     }
-    
 }
 
 
