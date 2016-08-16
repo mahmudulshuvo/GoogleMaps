@@ -24,7 +24,7 @@
                                     <constraint firstAttribute="height" constant="60" id="Q8g-B4-l3U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                                <state key="normal" title="Button">
+                                <state key="normal" title="Track Me!">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -53,6 +53,7 @@
                     </view>
                     <connections>
                         <outlet property="bckView" destination="TNe-jo-RDk" id="k0d-Wf-7Nw"/>
+                        <outlet property="btn" destination="ZSj-hs-jgv" id="1Wd-yt-3Hm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

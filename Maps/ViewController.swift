@@ -12,6 +12,7 @@ import GoogleMaps
 class ViewController: UIViewController {
   
 
+    @IBOutlet weak var btn: UIButton!
     @IBOutlet weak var bckView: UIView!
     var mapView: GMSMapView!
     var coordinates = [[String:AnyObject]]()
@@ -32,14 +33,13 @@ class ViewController: UIViewController {
         let camera = GMSCameraPosition.cameraWithLatitude(23.747504, longitude: 90.369203, zoom: 15)
         mapView = GMSMapView.mapWithFrame(CGRectMake(0, 0, 600, 600), camera: camera)
         bckView.addSubview(mapView)
-        bckView.sizeToFit()
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(23.747504, 90.369203)
         marker.title = "Pizza Hut"
         marker.snippet = "Dhanmondi"
         marker.map = mapView
-        marker.icon = GMSMarker.markerImageWithColor(UIColor.greenColor())
+        marker.icon = UIImage(named: "car")
 
     }
     
@@ -57,7 +57,6 @@ class ViewController: UIViewController {
         let directionsData = NSData(contentsOfURL: directionsURL!)
         do {
             if let json = try NSJSONSerialization.JSONObjectWithData(directionsData!, options: []) as? [String: AnyObject] {
-                print("json data \(json)")
                 if let status = json["status"] as? String {
                     if (status == "OK") {
                         if let routes = json["routes"] as AnyObject? as? [[String: AnyObject]] {
@@ -91,9 +90,10 @@ class ViewController: UIViewController {
             myStringArr = dValue.componentsSeparatedByString(" ")
             time = Double(myStringArr[0])!
             time *= 60
-            print("coordinates \(self.coordinates[counter]) and route \(route)")
             counter += 1
             self.timer = NSTimer.scheduledTimerWithTimeInterval(time, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
+            btn.titleLabel!.font =  UIFont(name: "System", size: 20)
+            btn.setTitle("Please wait \(time) sec for the move", forState: .Normal)
         }
     }
     
@@ -109,9 +109,10 @@ class ViewController: UIViewController {
             myStringArr = dValue.componentsSeparatedByString(" ")
             time = Double(myStringArr[0])!
             time *= 60
-            print("coordinates \(self.coordinates[counter]) and route \(route)")
             counter += 1
             self.timer = NSTimer.scheduledTimerWithTimeInterval(time, target: self, selector: #selector(ViewController.update), userInfo: nil, repeats: true)
+            btn.titleLabel!.font =  UIFont(name: "System", size: 20)
+            btn.setTitle("Please wait \(time) sec for the move", forState: .Normal)
         }
         
         else {
@@ -124,10 +125,10 @@ class ViewController: UIViewController {
     
     func upDateMarker(coordinates : CLLocationCoordinate2D)  {
         var originMarker: GMSMarker!
-         mapView.camera = GMSCameraPosition.cameraWithTarget(originCoordinate, zoom: 15.0)
+         mapView.camera = GMSCameraPosition.cameraWithTarget(originCoordinate, zoom: 18.0)
         originMarker = GMSMarker(position: self.originCoordinate)
         originMarker.map = self.mapView
-        originMarker.icon = GMSMarker.markerImageWithColor(UIColor.redColor())
+        originMarker.icon = UIImage(named: "car")
     }
     
     func  drawPolyline(route : String) {

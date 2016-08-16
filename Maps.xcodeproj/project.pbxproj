@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6CD80EC3F2D586F9DD4314FD /* libPods-Maps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 141B5AF5275E3E09E1E469CE /* libPods-Maps.a */; };
+		C8C5F8351D63225800D34F48 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = C8C5F8341D63225800D34F48 /* car.png */; };
 		C8FAD5031D41264500223678 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FAD5021D41264500223678 /* AppDelegate.swift */; };
 		C8FAD5051D41264500223678 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FAD5041D41264500223678 /* ViewController.swift */; };
 		C8FAD5081D41264500223678 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8FAD5061D41264500223678 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		1390EB06FD5270446544A848 /* Pods_MapsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		141B5AF5275E3E09E1E469CE /* libPods-Maps.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Maps.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19029DA2708A7EF5CDF38C4C /* Pods-Maps.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Maps.release.xcconfig"; path = "Pods/Target Support Files/Pods-Maps/Pods-Maps.release.xcconfig"; sourceTree = "<group>"; };
+		C8C5F8341D63225800D34F48 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
 		C8FAD4FF1D41264500223678 /* Maps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FAD5021D41264500223678 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C8FAD5041D41264500223678 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				C8FAD5091D41264500223678 /* Assets.xcassets */,
 				C8FAD50B1D41264500223678 /* LaunchScreen.storyboard */,
 				C8FAD50E1D41264500223678 /* Info.plist */,
+				C8C5F8341D63225800D34F48 /* car.png */,
 			);
 			path = Maps;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			files = (
 				C8FAD50D1D41264500223678 /* LaunchScreen.storyboard in Resources */,
 				C8FAD50A1D41264500223678 /* Assets.xcassets in Resources */,
+				C8C5F8351D63225800D34F48 /* car.png in Resources */,
 				C8FAD5311D41268000223678 /* Podfile in Resources */,
 				C8FAD5081D41264500223678 /* Main.storyboard in Resources */,
 			);
